@@ -1,0 +1,94 @@
+<ion-content [fullscreen]="true" class="login-content">
+  <main class="login-stage" aria-labelledby="login-title">
+    <div class="orb orb-top" aria-hidden="true"></div>
+    <div class="orb orb-bottom" aria-hidden="true"></div>
+
+    <section class="brand-panel" aria-label="BlueLedger introduction">
+      <div class="brand-mark" aria-hidden="true"><span></span><span></span><span></span></div>
+      <p class="brand-name">BlueLedger</p>
+      <div class="brand-copy">
+        <p class="eyebrow">FX portfolio planner</p>
+        <h1>Plan a calmer financial horizon.</h1>
+        <p>Build a clear view of the capital you have and the contributions you are planning.</p>
+      </div>
+    </section>
+
+    <section class="login-panel" aria-label="Sign in to BlueLedger">
+      <div class="mobile-brand">
+        <div class="brand-mark compact" aria-hidden="true">
+          <span></span><span></span><span></span>
+        </div>
+        <p>BlueLedger</p>
+      </div>
+      <p class="eyebrow">Your portfolio, clearly</p>
+      <h2 id="login-title">Welcome back</h2>
+      <p class="intro">Use a DummyJSON account to enter the portfolio planner.</p>
+
+      <form (submit)="$event.preventDefault(); signIn()" novalidate>
+        <ion-input
+          class="auth-input"
+          label="Username"
+          label-placement="stacked"
+          fill="solid"
+          autocomplete="username"
+          inputmode="text"
+          [value]="username()"
+          [errorText]="submitted() && !username().trim() ? 'Enter a username.' : ''"
+          [class.ion-touched]="submitted()"
+          [class.ion-invalid]="submitted() && !username().trim()"
+          (ionInput)="onUsernameInput($event)"
+        >
+          <ion-icon slot="start" name="person-outline" aria-hidden="true"></ion-icon>
+        </ion-input>
+
+        <ion-input
+          class="auth-input"
+          label="Password"
+          label-placement="stacked"
+          fill="solid"
+          type="password"
+          autocomplete="current-password"
+          [value]="password()"
+          [errorText]="submitted() && !password() ? 'Enter a password.' : ''"
+          [class.ion-touched]="submitted()"
+          [class.ion-invalid]="submitted() && !password()"
+          (ionInput)="onPasswordInput($event)"
+        >
+          <ion-icon slot="start" name="lock-closed-outline" aria-hidden="true"></ion-icon>
+          <ion-input-password-toggle slot="end"></ion-input-password-toggle>
+        </ion-input>
+
+        @if (formError()) {
+          <ion-note class="auth-error" color="danger" role="alert">{{ formError() }}</ion-note>
+        }
+
+        <ion-button
+          class="primary-action"
+          color="primary"
+          expand="block"
+          type="submit"
+          [disabled]="isSubmitting()"
+        >
+          @if (isSubmitting()) {
+            <ion-spinner name="crescent" aria-label="Signing in"></ion-spinner>
+            <span>Signing in</span>
+          } @else {
+            <span>Sign in</span>
+            <ion-icon slot="end" name="arrow-forward-outline" aria-hidden="true"></ion-icon>
+          }
+        </ion-button>
+
+        <ion-button
+          class="demo-action"
+          fill="outline"
+          expand="block"
+          type="button"
+          (click)="fillDemo()"
+        >
+          <ion-icon slot="start" name="people-outline" aria-hidden="true"></ion-icon>
+          Use demo account
+        </ion-button>
+      </form>
+    </section>
+  </main>
+</ion-content>

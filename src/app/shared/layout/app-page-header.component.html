@@ -1,0 +1,41 @@
+<ion-header class="page-header" [class.compact]="compact()">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      @if (backHref()) {
+        <ion-back-button [defaultHref]="backHref()!" text="" aria-label="Back"></ion-back-button>
+      } @else {
+        <span class="wordmark" aria-label="BlueLedger">
+          <span class="wordmark-mark" aria-hidden="true"></span>
+          <span>BlueLedger</span>
+        </span>
+      }
+    </ion-buttons>
+
+    @if (compact()) {
+      <ion-title>{{ title() }}</ion-title>
+    }
+
+    <ion-buttons slot="end">
+      <ion-button
+        class="profile-action"
+        fill="clear"
+        (click)="showAccountActions()"
+        aria-label="Open account actions"
+      >
+        <ion-avatar>
+          @if (auth.investor()?.image && !avatarFailed()) {
+            <img
+              [src]="auth.investor()!.image"
+              [alt]="auth.displayName()"
+              (error)="onAvatarError()"
+            />
+          } @else {
+            <span>{{ auth.initials() }}</span>
+          }
+        </ion-avatar>
+        <span class="profile-name">{{ auth.displayName() }}</span>
+        <ion-icon name="ellipsis-horizontal" aria-hidden="true"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>

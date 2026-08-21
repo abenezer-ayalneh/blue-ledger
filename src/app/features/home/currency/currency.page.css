@@ -1,0 +1,244 @@
+:host {
+  display: block;
+  height: 100%;
+}
+
+.currency-content {
+  --background: transparent;
+}
+
+.currency-page {
+  width: min(100%, 1160px);
+  min-height: 100%;
+  margin: 0 auto;
+  padding: 14px 20px 116px;
+}
+
+.currency-intro {
+  max-width: 30rem;
+  margin: 16px 0 24px;
+}
+
+.eyebrow,
+.currency-intro p,
+.chart-heading h2 {
+  margin: 0;
+}
+
+.eyebrow {
+  color: var(--blueledger-blue);
+  font-size: 0.71rem;
+  font-weight: 820;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+h1,
+h2 {
+  color: var(--blueledger-ink);
+}
+
+h1 {
+  margin: 8px 0 8px;
+  font-size: clamp(2.35rem, 10vw, 4rem);
+  font-weight: 780;
+  letter-spacing: -0.075em;
+  line-height: 0.95;
+}
+
+.currency-intro > p:last-child {
+  color: var(--blueledger-muted);
+  font-size: 0.94rem;
+  line-height: 1.5;
+}
+
+.currency-intro strong {
+  color: var(--blueledger-ink);
+}
+
+.currency-segment {
+  --background: rgba(255, 255, 255, 0.94);
+  --indicator-color: var(--blueledger-blue);
+  --indicator-box-shadow: 0 8px 18px rgba(8, 123, 242, 0.22);
+  --indicator-height: 100%;
+  margin-bottom: 20px;
+  padding: 5px;
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  border-radius: 22px;
+  box-shadow: var(--blueledger-shadow);
+}
+
+.currency-segment ion-segment-button {
+  --border-radius: 17px;
+  --color: var(--blueledger-muted);
+  --color-checked: #ffffff;
+  min-height: 45px;
+  font-weight: 820;
+  letter-spacing: -0.025em;
+  text-transform: none;
+}
+
+.currency-list {
+  display: grid;
+  gap: 10px;
+  padding: 0;
+  background: transparent;
+}
+
+.currency-list ion-item {
+  --background: rgba(255, 255, 255, 0.95);
+  --border-radius: 24px;
+  --color: var(--blueledger-ink);
+  --inner-padding-end: 16px;
+  min-height: 91px;
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  border-radius: 24px;
+  box-shadow: var(--blueledger-shadow);
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.currency-list ion-item.is-selected {
+  transform: translateY(-2px);
+  box-shadow: 0 20px 38px rgba(8, 123, 242, 0.16);
+}
+
+.currency-monogram {
+  display: grid;
+  width: 48px;
+  height: 48px;
+  margin-right: 4px;
+  place-items: center;
+  border-radius: 18px;
+  background: #e5f6ff;
+  color: var(--blueledger-blue);
+  font-size: 1.65rem;
+  font-weight: 750;
+}
+
+.currency-monogram.active {
+  background: var(--blueledger-blue);
+  color: #fff;
+}
+
+ion-item h2 {
+  margin: 0 0 3px;
+  font-size: 1.13rem;
+  font-weight: 820;
+  letter-spacing: -0.04em;
+}
+
+ion-item p {
+  margin: 0;
+  color: var(--blueledger-muted) !important;
+  font-size: 0.72rem !important;
+  font-weight: 650;
+}
+
+.currency-value {
+  display: grid;
+  justify-items: end;
+  gap: 5px;
+}
+
+.currency-value strong {
+  font-size: 0.98rem;
+  letter-spacing: -0.04em;
+}
+
+.currency-value span {
+  display: inline-flex;
+  align-items: center;
+  color: #168f64;
+  font-size: 0.69rem;
+  font-weight: 820;
+}
+
+.currency-value span.negative {
+  color: #ca526c;
+}
+
+.currency-value ion-icon {
+  margin-right: 2px;
+  font-size: 13px;
+}
+
+.movement-section {
+  margin-top: 30px;
+}
+
+.chart-heading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 14px;
+  margin-bottom: 16px;
+}
+
+.chart-heading h2 {
+  margin: 4px 0 0;
+  font-size: 1.1rem;
+  letter-spacing: -0.04em;
+}
+
+ion-chip {
+  --background: rgba(255, 255, 255, 0.68);
+  --color: var(--blueledger-blue);
+  margin: 0;
+  font-size: 0.68rem;
+  font-weight: 760;
+}
+
+.chart-skeleton {
+  display: flex;
+  height: 220px;
+  align-items: end;
+  justify-content: space-around;
+  gap: 14px;
+  padding: 20px 20px 0;
+  border-bottom: 1px solid var(--blueledger-border);
+}
+
+.chart-skeleton ion-skeleton-text {
+  --background: rgba(8, 123, 242, 0.22);
+  display: block;
+  margin: 0;
+}
+
+.movement-section > ion-note {
+  display: block;
+  margin-top: 12px;
+  color: var(--blueledger-muted);
+  font-size: 0.72rem;
+}
+
+@media (min-width: 768px) {
+  .currency-page {
+    display: grid;
+    grid-template-columns: minmax(300px, 0.75fr) minmax(360px, 1.1fr);
+    column-gap: clamp(40px, 8vw, 120px);
+    padding: 34px 54px 86px;
+  }
+
+  .currency-intro,
+  .currency-segment,
+  .currency-list {
+    grid-column: 1;
+  }
+
+  .movement-section {
+    grid-column: 2;
+    grid-row: 1 / span 3;
+    align-self: center;
+    margin: 0;
+  }
+}
+
+@media (min-width: 1024px) {
+  .currency-page {
+    width: min(100%, 1360px);
+    margin-left: 132px;
+    padding-left: 70px;
+  }
+}

@@ -1,0 +1,86 @@
+.page-header {
+  position: relative;
+  z-index: 4;
+}
+
+ion-toolbar {
+  --background: transparent;
+  --border-color: transparent;
+  --min-height: 76px;
+  padding: 0 10px;
+}
+
+.wordmark {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding-left: 8px;
+  color: var(--blueledger-ink);
+  font-size: 1rem;
+  font-weight: 850;
+  letter-spacing: -0.04em;
+}
+
+.wordmark-mark {
+  width: 24px;
+  height: 24px;
+  border: 6px solid var(--blueledger-blue);
+  border-right-color: #59ccf4;
+  border-radius: 50%;
+  box-shadow: inset 0 0 0 2px #eaf8ff;
+}
+
+.profile-action {
+  --padding-start: 7px;
+  --padding-end: 7px;
+  --color: var(--blueledger-ink);
+  height: 48px;
+  font-size: 0.88rem;
+  font-weight: 760;
+  text-transform: none;
+}
+
+ion-avatar {
+  width: 34px;
+  height: 34px;
+  margin-right: 7px;
+  overflow: hidden;
+  border: 2px solid rgba(255, 255, 255, 0.9);
+  background: #c9edff;
+  box-shadow: 0 5px 12px rgba(25, 110, 165, 0.12);
+}
+
+ion-avatar span {
+  display: grid;
+  width: 100%;
+  height: 100%;
+  place-items: center;
+  color: var(--blueledger-blue);
+  font-size: 0.7rem;
+  font-weight: 850;
+}
+
+.profile-name {
+  display: none;
+}
+
+.profile-action > ion-icon {
+  margin-left: 2px;
+  color: var(--blueledger-muted);
+  font-size: 18px;
+}
+
+@media (min-width: 768px) {
+  ion-toolbar {
+    --min-height: 88px;
+    padding: 0 34px;
+  }
+
+  .wordmark {
+    font-size: 1.12rem;
+  }
+
+  .profile-name {
+    display: inline;
+  }
+}

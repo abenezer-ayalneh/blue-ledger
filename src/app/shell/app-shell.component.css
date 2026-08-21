@@ -1,0 +1,53 @@
+:host {
+  display: block;
+  height: 100%;
+}
+
+.blueledger-nav {
+  --background: rgba(255, 255, 255, 0.94);
+  --border: 0;
+  --color: #8bb7d5;
+  --color-selected: var(--blueledger-blue);
+  position: absolute;
+  right: 18px;
+  bottom: calc(12px + env(safe-area-inset-bottom));
+  left: 18px;
+  z-index: 10;
+  height: 76px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.82);
+  border-radius: 26px;
+  box-shadow: 0 14px 34px rgba(31, 107, 157, 0.16);
+}
+
+.blueledger-nav ion-tab-button {
+  --ripple-color: rgba(8, 123, 242, 0.16);
+  max-width: none;
+  font-size: 0.64rem;
+  font-weight: 760;
+  text-transform: none;
+}
+
+.blueledger-nav ion-icon {
+  font-size: 22px;
+}
+
+@media (min-width: 1024px) {
+  .blueledger-nav {
+    top: 22px;
+    bottom: 22px;
+    left: 22px;
+    width: 112px;
+    height: auto;
+    flex-direction: column;
+    border-radius: 34px;
+  }
+
+  .blueledger-nav ion-tab-button {
+    flex: 0 0 86px;
+  }
+
+  .blueledger-nav ion-icon {
+    font-size: 25px;
+  }
+}

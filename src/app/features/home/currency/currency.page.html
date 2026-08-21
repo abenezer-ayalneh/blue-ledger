@@ -1,0 +1,101 @@
+<app-page-header
+  title="Currency mix"
+  backHref="/app/home/overview"
+  [compact]="true"
+></app-page-header>
+
+<ion-content class="currency-content">
+  <main class="currency-page" aria-labelledby="currency-title">
+    <section class="currency-intro">
+      <p class="eyebrow">{{ scenario().title }}</p>
+      <h1 id="currency-title">Currency mix</h1>
+      <p>
+        <strong>{{ formatCurrency(scenario().amount) }}</strong> planned across three simulated
+        currency positions.
+      </p>
+    </section>
+
+    <ion-segment
+      class="currency-segment"
+      [value]="selectedCode()"
+      (ionChange)="selectCurrency($event.detail.value)"
+      aria-label="Select a currency"
+    >
+      @for (item of portfolio.allocation; track item.code) {
+        <ion-segment-button [value]="item.code">
+          <ion-label>{{ item.code }}</ion-label>
+        </ion-segment-button>
+      }
+    </ion-segment>
+
+    <ion-list class="currency-list" lines="none" aria-label="Currency positions">
+      @for (item of portfolio.allocation; track item.code) {
+        <ion-item
+          button="true"
+          detail="false"
+          [class.is-selected]="selectedCode() === item.code"
+          (click)="selectCurrency(item.code)"
+        >
+          <div slot="start" class="currency-monogram" [class.active]="selectedCode() === item.code">
+            {{ item.code === 'USD' ? '$' : item.code === 'EUR' ? '€' : '£' }}
+          </div>
+          <ion-label>
+            <h2>{{ item.code }}</h2>
+            <p>{{ item.percentage }}% · {{ item.label }}</p>
+          </ion-label>
+          <div slot="end" class="currency-value">
+            <strong>{{ formatCurrency(convertedAmount(item.code), item.code) }}</strong>
+            <span
+              [class.positive]="rates.quote(item.code).deltaPercent >= 0"
+              [class.negative]="rates.quote(item.code).deltaPercent < 0"
+            >
+              <ion-icon
+                [name]="
+                  rates.quote(item.code).deltaPercent >= 0
+                    ? 'arrow-up-outline'
+                    : 'arrow-down-outline'
+                "
+                aria-hidden="true"
+              ></ion-icon>
+              {{ rates.quote(item.code).deltaPercent >= 0 ? '+' : ''
+              }}{{ rates.quote(item.code).deltaPercent }}%
+            </span>
+          </div>
+        </ion-item>
+      }
+    </ion-list>
+
+    <section class="movement-section" aria-labelledby="movement-title">
+      <div class="chart-heading">
+        <div>
+          <p class="eyebrow">{{ selectedCode() }} reference</p>
+          <h2 id="movement-title">Simulated 7-day movement</h2>
+        </div>
+        <ion-chip outline="true" color="primary">
+          <ion-icon name="pulse-outline" aria-hidden="true"></ion-icon>
+          <ion-label>Live every 4s</ion-label>
+        </ion-chip>
+      </div>
+
+      @defer (on viewport; prefetch on idle) {
+        <app-bar-chart
+          [label]="selectedCode() + ' simulated seven day exchange movement'"
+          [labels]="chartLabels"
+          [values]="chartValues()"
+        ></app-bar-chart>
+      } @placeholder {
+        <div class="chart-skeleton" aria-label="Loading chart">
+          <ion-skeleton-text animated style="width: 12%; height: 38%"></ion-skeleton-text>
+          <ion-skeleton-text animated style="width: 12%; height: 55%"></ion-skeleton-text>
+          <ion-skeleton-text animated style="width: 12%; height: 68%"></ion-skeleton-text>
+          <ion-skeleton-text animated style="width: 12%; height: 47%"></ion-skeleton-text>
+          <ion-skeleton-text animated style="width: 12%; height: 74%"></ion-skeleton-text>
+        </div>
+      }
+      <ion-note
+        >Indicative simulated data · 1 USD = {{ formatRate(selectedQuote().rate) }}
+        {{ selectedCode() }}</ion-note
+      >
+    </section>
+  </main>
+</ion-content>

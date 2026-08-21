@@ -1,0 +1,136 @@
+<app-page-header></app-page-header>
+
+<ion-content class="overview-content">
+  <main class="overview-page" aria-labelledby="overview-title">
+    <section class="hero-copy">
+      <p class="eyebrow">Portfolio overview</p>
+      <h1 id="overview-title">Build your horizon.</h1>
+      <p>Start with the capital you have, then make every monthly contribution visible.</p>
+    </section>
+
+    <section class="capital-section" aria-labelledby="capital-heading">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Your plan</p>
+          <h2 id="capital-heading">Starting capital</h2>
+        </div>
+        <span>USD</span>
+      </div>
+      <ion-input
+        class="capital-input"
+        label="Starting capital"
+        label-placement="stacked"
+        fill="solid"
+        type="number"
+        inputmode="numeric"
+        [value]="capitalDraft()"
+        [class.ion-invalid]="capitalError() !== null"
+        [class.ion-touched]="capitalError() !== null"
+        (ionInput)="onCapitalInput($event)"
+        (ionBlur)="commitCapital()"
+      >
+        <span slot="start" class="currency-prefix">$</span>
+      </ion-input>
+      @if (capitalError()) {
+        <ion-note color="danger" role="alert">{{ capitalError() }}</ion-note>
+      }
+    </section>
+
+    <section class="scenario-grid" aria-label="Portfolio scenarios">
+      <ion-card
+        button="true"
+        routerLink="/app/home/currency/current"
+        class="scenario-card current-card"
+      >
+        <div class="scenario-icon">
+          <ion-icon name="cash-outline" aria-hidden="true"></ion-icon>
+        </div>
+        <p>Current capital</p>
+        <strong><app-count-up [value]="portfolio.currentScenario().amount"></app-count-up></strong>
+        <span class="scenario-detail">Available today</span>
+      </ion-card>
+
+      <ion-card
+        button="true"
+        routerLink="/app/home/currency/projected"
+        class="scenario-card projected-card"
+      >
+        <div class="scenario-icon">
+          <ion-icon name="trending-up-outline" aria-hidden="true"></ion-icon>
+        </div>
+        <p>Projected value</p>
+        <strong><app-count-up [value]="portfolio.projectedValue()"></app-count-up></strong>
+        <span class="scenario-detail">After {{ portfolio.plan().horizonMonths }} months</span>
+      </ion-card>
+    </section>
+
+    <section class="planner-section" aria-label="Portfolio planner controls">
+      <article class="range-panel">
+        <div class="range-heading">
+          <p>Monthly contribution</p>
+          <strong
+            ><app-count-up [value]="portfolio.plan().monthlyContribution"></app-count-up
+          ></strong>
+        </div>
+        <div class="vertical-range-wrap contribution-range">
+          <ion-range
+            aria-label="Monthly contribution"
+            [attr.aria-valuetext]="
+              '$' + portfolio.plan().monthlyContribution + ' monthly contribution'
+            "
+            [value]="portfolio.plan().monthlyContribution"
+            [min]="0"
+            [max]="2000"
+            [step]="50"
+            [pin]="true"
+            (ionChange)="onContributionChange($event)"
+            (keydown)="onContributionKeydown($event)"
+          ></ion-range>
+          <div class="range-scale" aria-hidden="true">
+            <span>$2k</span><span>$1k</span><span>$0</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="range-panel">
+        <div class="range-heading">
+          <p>Horizon</p>
+          <strong
+            >{{ portfolio.plan().horizonMonths }}
+            <small>{{ portfolio.plan().horizonMonths === 1 ? 'month' : 'months' }}</small></strong
+          >
+        </div>
+        <div class="vertical-range-wrap horizon-range">
+          <ion-range
+            aria-label="Contribution horizon in months"
+            [attr.aria-valuetext]="
+              portfolio.plan().horizonMonths +
+              ' ' +
+              (portfolio.plan().horizonMonths === 1 ? 'month' : 'months')
+            "
+            [value]="portfolio.plan().horizonMonths"
+            [min]="1"
+            [max]="24"
+            [step]="1"
+            [pin]="true"
+            (ionChange)="onHorizonChange($event)"
+            (keydown)="onHorizonKeydown($event)"
+          ></ion-range>
+          <div class="range-scale" aria-hidden="true">
+            <span>24</span><span>12</span><span>1</span>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <ion-button
+      class="analyze-action"
+      color="primary"
+      expand="block"
+      routerLink="/app/home/analytics"
+    >
+      Analyze portfolio
+      <ion-icon slot="end" name="arrow-forward-outline" aria-hidden="true"></ion-icon>
+    </ion-button>
+  </main>
+</ion-content>

@@ -1,0 +1,17 @@
+<app-page-header [compact]="true" [title]="title"></app-page-header>
+
+<ion-content class="soon-content">
+  <main class="soon-page">
+    <div class="soon-icon"><ion-icon [name]="icon" aria-hidden="true"></ion-icon></div>
+    <p class="eyebrow">BlueLedger</p>
+    <h1>{{ title }}</h1>
+    <p>
+      This route is ready for the next BlueLedger release. The portfolio planner remains available
+      from Home.
+    </p>
+    <ion-button color="primary" routerLink="/app/home/overview">
+      <ion-icon slot="start" name="arrow-back-outline" aria-hidden="true"></ion-icon>
+      Back to Home
+    </ion-button>
+  </main>
+</ion-content>

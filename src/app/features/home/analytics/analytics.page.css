@@ -1,0 +1,262 @@
+:host {
+  display: block;
+  height: 100%;
+}
+
+.analytics-content {
+  --background: transparent;
+}
+
+.analytics-page {
+  width: min(100%, 1040px);
+  min-height: 100%;
+  margin: 0 auto;
+  padding: 14px 20px 116px;
+  text-align: center;
+}
+
+.analytics-intro {
+  max-width: 32rem;
+  margin: 18px auto 8px;
+}
+
+.eyebrow,
+.analytics-intro p,
+.analytics-summary p,
+.analytics-summary span,
+.dataset-card h2,
+.dataset-card p {
+  margin: 0;
+}
+
+.eyebrow {
+  color: var(--blueledger-blue);
+  font-size: 0.71rem;
+  font-weight: 820;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+h1,
+h2 {
+  color: var(--blueledger-ink);
+}
+
+h1 {
+  margin: 7px 0 6px;
+  font-size: clamp(3rem, 15vw, 5.5rem);
+  font-weight: 790;
+  letter-spacing: -0.085em;
+  line-height: 0.9;
+}
+
+.analytics-intro > p:last-child {
+  color: var(--blueledger-muted);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.chart-area {
+  width: min(100%, 430px);
+  margin: 12px auto -6px;
+}
+
+.doughnut-skeleton {
+  display: grid;
+  width: min(88vw, 310px);
+  aspect-ratio: 1;
+  margin: 0 auto;
+  place-items: center;
+  border-radius: 50%;
+  background: conic-gradient(#087bf2 0 48%, #72cef5 48% 78%, #b8eafd 78% 100%);
+}
+
+.doughnut-skeleton ion-skeleton-text {
+  --background: rgba(255, 255, 255, 0.95);
+  width: 52%;
+  height: 52%;
+  margin: 0;
+  border-radius: 50%;
+}
+
+.analytics-summary {
+  display: grid;
+  justify-items: center;
+  gap: 4px;
+  margin: 0 auto 22px;
+}
+
+.analytics-summary p {
+  color: var(--blueledger-ink);
+  font-size: 1rem;
+  font-weight: 760;
+}
+
+.analytics-summary strong {
+  color: var(--blueledger-blue);
+  font-size: 1.7rem;
+  letter-spacing: -0.06em;
+}
+
+.analytics-summary span {
+  color: var(--blueledger-muted);
+  font-size: 0.8rem;
+}
+
+.pagination-dots {
+  display: flex;
+  gap: 7px;
+  margin-top: 7px;
+}
+
+.pagination-dots i {
+  display: block;
+  width: 7px;
+  height: 7px;
+  border-radius: 999px;
+  background: #a9dbf4;
+}
+
+.pagination-dots i.active {
+  background: var(--blueledger-blue);
+}
+
+.analytics-segment {
+  --background: rgba(255, 255, 255, 0.94);
+  --indicator-color: var(--blueledger-blue);
+  --indicator-box-shadow: 0 8px 18px rgba(8, 123, 242, 0.22);
+  --indicator-height: 100%;
+  padding: 5px;
+  border: 1px solid rgba(255, 255, 255, 0.84);
+  border-radius: 22px;
+  box-shadow: var(--blueledger-shadow);
+}
+
+.analytics-segment ion-segment-button {
+  --border-radius: 17px;
+  --color: var(--blueledger-muted);
+  --color-checked: #fff;
+  min-height: 54px;
+  font-size: 0.66rem;
+  font-weight: 820;
+  text-transform: none;
+}
+
+.analytics-segment ion-icon {
+  font-size: 17px;
+}
+
+.dataset-card {
+  --background: rgba(255, 255, 255, 0.86);
+  margin: 18px 0 0;
+  padding: 21px;
+  border: 1px solid rgba(255, 255, 255, 0.86);
+  border-radius: 26px;
+  box-shadow: var(--blueledger-shadow);
+  text-align: left;
+}
+
+.dataset-card-heading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.dataset-card h2 {
+  margin: 4px 0 0;
+  font-size: 1.14rem;
+  letter-spacing: -0.04em;
+}
+
+ion-chip {
+  --background: #effaff;
+  --color: var(--blueledger-blue);
+  margin: 0;
+  font-size: 0.66rem;
+  font-weight: 760;
+}
+
+.legend-list {
+  display: grid;
+  gap: 10px;
+  padding: 0;
+  margin: 18px 0 13px;
+  list-style: none;
+}
+
+.legend-list li {
+  display: grid;
+  grid-template-columns: 10px 1fr auto;
+  align-items: center;
+  gap: 9px;
+  color: var(--blueledger-muted);
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.legend-list strong {
+  color: var(--blueledger-ink);
+  font-variant-numeric: tabular-nums;
+}
+
+.legend-swatch {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+}
+
+.dataset-card ion-note {
+  display: block;
+  color: var(--blueledger-muted);
+  font-size: 0.71rem;
+}
+
+@media (min-width: 768px) {
+  .analytics-page {
+    display: grid;
+    grid-template-columns: minmax(360px, 0.9fr) minmax(340px, 0.75fr);
+    grid-template-areas:
+      'intro summary'
+      'chart summary'
+      'chart segment'
+      'chart details';
+    align-items: center;
+    column-gap: clamp(54px, 9vw, 150px);
+    padding: 30px 54px 86px;
+    text-align: left;
+  }
+
+  .analytics-intro {
+    grid-area: intro;
+    margin: 0 0 12px;
+  }
+
+  .chart-area {
+    grid-area: chart;
+    width: min(100%, 440px);
+    margin: 0;
+  }
+
+  .analytics-summary {
+    grid-area: summary;
+    justify-items: start;
+    margin: 0;
+  }
+
+  .analytics-segment {
+    grid-area: segment;
+  }
+
+  .dataset-card {
+    grid-area: details;
+  }
+}
+
+@media (min-width: 1024px) {
+  .analytics-page {
+    width: min(100%, 1260px);
+    margin-left: 132px;
+    padding-left: 70px;
+  }
+}

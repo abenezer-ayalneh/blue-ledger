@@ -1,0 +1,22 @@
+<ion-router-outlet></ion-router-outlet>
+
+@if (auth.isAuthenticated()) {
+  <ion-tab-bar class="blueledger-nav" aria-label="Main navigation">
+    <ion-tab-button tab="create" routerLink="/app/create">
+      <ion-icon name="add-outline" aria-hidden="true"></ion-icon>
+      <ion-label>Create</ion-label>
+    </ion-tab-button>
+    <ion-tab-button tab="home" routerLink="/app/home/overview">
+      <ion-icon name="home-outline" aria-hidden="true"></ion-icon>
+      <ion-label>Home</ion-label>
+    </ion-tab-button>
+    <ion-tab-button tab="security" routerLink="/app/security">
+      <ion-icon name="shield-checkmark-outline" aria-hidden="true"></ion-icon>
+      <ion-label>Security</ion-label>
+    </ion-tab-button>
+    <ion-tab-button tab="settings" routerLink="/app/settings">
+      <ion-icon name="settings-outline" aria-hidden="true"></ion-icon>
+      <ion-label>Settings</ion-label>
+    </ion-tab-button>
+  </ion-tab-bar>
+}

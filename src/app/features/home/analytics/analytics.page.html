@@ -1,0 +1,77 @@
+<app-page-header title="Analytics" backHref="/app/home/overview" [compact]="true"></app-page-header>
+
+<ion-content class="analytics-content">
+  <main class="analytics-page" aria-labelledby="analytics-title">
+    <section class="analytics-intro">
+      <p class="eyebrow">Portfolio outlook</p>
+      <h1 id="analytics-title">
+        <app-count-up [value]="portfolio.projectedValue()"></app-count-up>
+      </h1>
+      <p>Built from your current capital and planned monthly contributions.</p>
+    </section>
+
+    <section class="chart-area" [attr.aria-label]="dataset().label">
+      @defer (on viewport; prefetch on idle) {
+        <app-doughnut-chart
+          [label]="dataset().label"
+          [labels]="dataset().labels"
+          [values]="dataset().values"
+          [colors]="dataset().colors"
+        ></app-doughnut-chart>
+      } @placeholder {
+        <div class="doughnut-skeleton" aria-label="Loading analytics chart">
+          <ion-skeleton-text animated></ion-skeleton-text>
+        </div>
+      }
+    </section>
+
+    <section class="analytics-summary" aria-live="polite">
+      <p>{{ dataset().summaryLabel }}</p>
+      <strong><app-count-up [value]="dataset().summaryValue"></app-count-up></strong>
+      <span>{{ dataset().summaryDetail }}</span>
+      <div class="pagination-dots" aria-hidden="true">
+        <i></i><i [class.active]="view() === 'funding'"></i><i></i>
+      </div>
+    </section>
+
+    <ion-segment
+      class="analytics-segment"
+      [value]="view()"
+      (ionChange)="selectView($event.detail.value)"
+      aria-label="Analytics view"
+    >
+      <ion-segment-button value="allocation">
+        <ion-icon name="pie-chart-outline" aria-hidden="true"></ion-icon>
+        <ion-label>Allocation</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="funding">
+        <ion-icon name="cash-outline" aria-hidden="true"></ion-icon>
+        <ion-label>Funding</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="outlook">
+        <ion-icon name="analytics-outline" aria-hidden="true"></ion-icon>
+        <ion-label>Outlook</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+
+    <ion-card class="dataset-card">
+      <div class="dataset-card-heading">
+        <div>
+          <p class="eyebrow">Breakdown</p>
+          <h2>{{ dataset().label }}</h2>
+        </div>
+        <ion-chip color="primary" outline="true">{{ dataset().labels.length }} slices</ion-chip>
+      </div>
+      <ul class="legend-list" aria-label="{{ dataset().label }} data table">
+        @for (label of dataset().labels; track label; let index = $index) {
+          <li>
+            <span class="legend-swatch" [style.background]="dataset().colors[index]"></span>
+            <span>{{ label }}</span>
+            <strong>{{ percentage(dataset().values[index]) }}</strong>
+          </li>
+        }
+      </ul>
+      <ion-note>All figures are planning illustrations, not investment advice.</ion-note>
+    </ion-card>
+  </main>
+</ion-content>

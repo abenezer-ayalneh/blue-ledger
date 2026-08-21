@@ -1,0 +1,71 @@
+:host {
+  display: block;
+  height: 100%;
+}
+
+.soon-content {
+  --background: transparent;
+}
+
+.soon-page {
+  display: grid;
+  min-height: calc(100% - 76px);
+  max-width: 430px;
+  padding: 40px 28px 128px;
+  margin: auto;
+  place-content: center;
+  justify-items: center;
+  text-align: center;
+}
+
+.soon-icon {
+  display: grid;
+  width: 74px;
+  height: 74px;
+  margin-bottom: 24px;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.88);
+  border-radius: 27px;
+  background: rgba(255, 255, 255, 0.8);
+  color: var(--blueledger-blue);
+  box-shadow: var(--blueledger-shadow);
+}
+
+.soon-icon ion-icon {
+  font-size: 34px;
+}
+
+.eyebrow {
+  margin: 0;
+  color: var(--blueledger-blue);
+  font-size: 0.72rem;
+  font-weight: 820;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+h1 {
+  margin: 7px 0 12px;
+  color: var(--blueledger-ink);
+  font-size: clamp(2.4rem, 11vw, 4rem);
+  font-weight: 780;
+  letter-spacing: -0.075em;
+  line-height: 0.95;
+}
+
+.soon-page > p:not(.eyebrow) {
+  max-width: 30ch;
+  margin: 0;
+  color: var(--blueledger-muted);
+  font-size: 0.95rem;
+  line-height: 1.55;
+}
+
+ion-button {
+  --border-radius: 19px;
+  --box-shadow: 0 15px 28px rgba(8, 123, 242, 0.22);
+  min-height: 53px;
+  margin-top: 26px;
+  font-weight: 800;
+  text-transform: none;
+}
